@@ -46,7 +46,7 @@ client.Ready += async () =>
 
     foreach (var user in await guild.GetUsersAsync().FlattenAsync())
     {
-        users.Add(new UserDetails(user.Id, user.Username, user.DisplayName, user.JoinedAt));
+        users.Add(new UserDetails(user.Id, user.Username, user.DisplayName, user.CreatedAt, user.JoinedAt));
     }
 
     var json = JsonSerializer.Serialize(users);
@@ -58,4 +58,4 @@ await client.StartAsync();
 
 await Task.Delay(-1);
 
-record UserDetails(ulong Id, string Username, string DisplayName, DateTimeOffset? JoinTime);
+record UserDetails(ulong Id, string Username, string DisplayName, DateTimeOffset CreationTime, DateTimeOffset? JoinTime);
