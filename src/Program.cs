@@ -51,6 +51,8 @@ client.Ready += async () =>
 
     var json = JsonSerializer.Serialize(users);
     Console.WriteLine(json);
+
+    await File.WriteAllTextAsync("Users.json", json);
 };
 
 await client.LoginAsync(TokenType.Bot, token);
